@@ -148,27 +148,6 @@ def on_text_message(data):
 						subclient.send_message(chatId=data.message.chatId,message="dire que la commande est verrouillée")
 					except:
 						pass
-						
-			if x.lower()=="-play" and c==[]:
-				if subclient.get_chat_thread(data.message.chatId).title==None:
-					if x.lower() not in l:
-						sounds="musique.mp3"
-						with open(sounds,"rb") as f:
-							try:
-								subclient.send_message(chatId=data.message.chatId,file=f,fileType="audio")
-								print(f"Informations demandées par {data.message.author.nickname}")
-							except Exception as e:
-								print(e)
-					else:
-						try:
-							subclient.send_message(chatId=data.message.chatId,message="La commande play est verrouillée")
-						except:
-							pass
-				else:
-					try:
-						subclient.send_message(chatId=data.message.chatId,message="fonctionne quand privé")
-					except:
-						pass
 
 			if x.lower()=="-join":
 				if c==[]:
@@ -536,16 +515,15 @@ print("Surveillance des chats...")
 ##################################
 
 ################################################commands/команды################################################
-time.sleep(10)
-print("Bot en cours de lancement...")
-def restart():
-    while True:
-        time.sleep(2)
-        count = 0
-        for i in threading.enumerate():
-            if i.name == "restart_thread":
-                count += 1
-        if count <= 1:
-            print("Restart")
-            client.socket.close()
-            client.socket.start()
+def socketRoot():
+	j=0
+	while True:
+		if j>=300:
+			print("Updating socket.......")
+			client.close()
+			client.start()
+			print("Socket updated")
+			j=0
+		j=j+1
+		time.sleep(1)
+socketRoot()
