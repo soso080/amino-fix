@@ -1,5 +1,5 @@
 import os
-os.system("pip install amino.fix==2.2.7")
+os.system("pip install time")
 import aminofix
 import re
 from colorama import init, Fore, Back, Style
