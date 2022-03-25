@@ -108,7 +108,7 @@ def on_text_message(data):
 								
 			if x.lower()=="-help" and c==[]:
 				try:
-					subclient.send_message(chatId=data.message.chatId,message="""[c]Voici mes commandes:\n\n[c]-membres\n[c]-fin | -twerk | -cid\n[c]-discord | -omg | -gémir\n[c]-tappe | -blague | -hugme\n[c]-go | -time | -inviteall\n[c]-grrr | -flirter | -acm\n[c]-import | -amino | -pv\n[c]-lol | -play\n\n[c]•────────────•\n\n[c]-code (lien profil)\n[c]-join (lien chat)\n[c]-vc (texte)""")
+					subclient.send_message(chatId=data.message.chatId,message="""[c]Voici mes commandes:\n\n[c]-membres\n[c]-fin | -twerk | -cid\n[c]-discord | -omg | -gemir\n[c]-tappe | -blague | -hugme\n[c]-go | -time | -inviteall\n[c]-grrr | -flirter | -acm\n[c]-import | -amino | -pv\n[c]-lol | -play\n\n[c]•────────────•\n\n[c]-code (lien profil)\n[c]-join (lien chat)\n[c]-vc (texte)""")
 					print(f"Informations demandées par {data.message.author.nickname}")
 				except Exception as e:
 					print(e)
@@ -325,12 +325,22 @@ faire -import pour trouver plus
 				if subclient.get_chat_thread(data.message.chatId).title==None:
 					if x.lower() not in l:
 						sounds="time.mp3"
-						with open(sounds,"fr") as f:
+						with open(sounds,"rb") as f:
 							try:
 								subclient.send_message(chatId=data.message.chatId,file=f,fileType="audio")
 								print(f"Informations demandées par {data.message.author.nickname}")
-							except:
-								pass
+							except Exception as e:
+								print(e)
+					else:
+						try:
+							subclient.send_message(chatId=data.message.chatId,message="Commande verrouillée")
+						except:
+							pass
+				else:
+					try:
+						subclient.send_message(chatId=data.message.chatId,message="La commande fonctionne qu'en pv, tapez -pv pour que le bot rejoigne pv")
+					except:
+						pass
 			
 			if x.lower()=="-play" and c==[]:
 				if subclient.get_chat_thread(data.message.chatId).title==None:
@@ -353,10 +363,10 @@ faire -import pour trouver plus
 					except:
 						pass
 
-			if x.lower()=="-gémir" and c==[]:
+			if x.lower()=="-gemir" and c==[]:
 				if subclient.get_chat_thread(data.message.chatId).title==None:
 					if x.lower() not in l:
-						sounds="gémir.mp3"
+						sounds="gemir.mp3"
 						with open(sounds,"fr") as f:
 							try:
 								subclient.send_message(chatId=data.message.chatId,file=f,fileType="audio")
