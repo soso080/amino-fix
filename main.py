@@ -186,12 +186,12 @@ def on_text_message(data):
 			
 			if x.lower()=="-lol":
 				if subclient.get_chat_thread(data.message.chatId).title!=None:
-					hx=random.choice(os.listdir("memes"))
+					hx=random.choice(os.listdir("sound"))
 					if x.lower() not in l:
-						sounds=f"memes/{hx}"
+						sounds=f"sound/{hx}"
 						with open(sounds,"rb") as f:
 							try:
-								subclient.send_message(chatId=data.message.chatId,file=f,fileType="image")
+								subclient.send_message(chatId=data.message.chatId,file=f,fileType="sound")
 								print(f"Informations demandées par {data.message.author.nickname}")
 							except Exception as e:
 								print(e)
@@ -320,27 +320,6 @@ faire -import pour trouver plus
 					print(f"Informations demandées par {data.message.author.nickname}")
 				except Exception as e:
 					print(e)
-					
-			if x.lower()=="-time" and c==[]:
-				if subclient.get_chat_thread(data.message.chatId).title==None:
-					if x.lower() not in l:
-						sounds="time.mp3"
-						with open(sounds,"rb") as f:
-							try:
-								subclient.send_message(chatId=data.message.chatId,file=f,fileType="audio")
-								print(f"Informations demandées par {data.message.author.nickname}")
-							except Exception as e:
-								print(e)
-					else:
-						try:
-							subclient.send_message(chatId=data.message.chatId,message="Commande verrouillée")
-						except:
-							pass
-				else:
-					try:
-						subclient.send_message(chatId=data.message.chatId,message="La commande fonctionne qu'en pv, tapez -pv pour que le bot rejoigne pv")
-					except:
-						pass
 			
 			if x.lower()=="-play" and c==[]:
 				if subclient.get_chat_thread(data.message.chatId).title==None:
@@ -363,11 +342,18 @@ faire -import pour trouver plus
 					except:
 						pass
 
-			if x.lower()=="-gemir" and c==[]:
+			if x.lower()=="-omg" and c==[]:
+				try:
+					subclient.send_message(chatId=data.message.chatId,message="""[c]J'ai répondu à de nombreux membres, mais quand je vous réponds, ça fait ma journée!""")
+					print(f"Informations demandées par {data.message.author.nickname}")
+				except Exception as e:
+					print(e)
+					
+			if x.lower()=="-time" and c==[]:
 				if subclient.get_chat_thread(data.message.chatId).title==None:
 					if x.lower() not in l:
-						sounds="gemir.mp3"
-						with open(sounds,"fr") as f:
+						sounds="time.mp3"
+						with open(sounds,"rb") as f:
 							try:
 								subclient.send_message(chatId=data.message.chatId,file=f,fileType="audio")
 								print(f"Informations demandées par {data.message.author.nickname}")
@@ -375,21 +361,14 @@ faire -import pour trouver plus
 								print(e)
 					else:
 						try:
-							subclient.send_message(chatId=data.message.chatId,message="La commande gémir est verrouillée")
+							subclient.send_message(chatId=data.message.chatId,message="Commande verrouillée")
 						except:
 							pass
 				else:
 					try:
-						subclient.send_message(chatId=data.message.chatId,message="La commande gémir ne fonctionne qu'en pv, tapez -pv pour que le bot rejoigne pv")
+						subclient.send_message(chatId=data.message.chatId,message="La commande fonctionne qu'en pv, tapez -pv pour que le bot rejoigne pv")
 					except:
 						pass
-
-			if x.lower()=="-omg" and c==[]:
-				try:
-					subclient.send_message(chatId=data.message.chatId,message="""[c]J'ai répondu à de nombreux membres, mais quand je vous réponds, ça fait ma journée!""")
-					print(f"Informations demandées par {data.message.author.nickname}")
-				except Exception as e:
-					print(e)
 
 			if x.lower()=="-discord" and c==[]:
 				try:
@@ -418,6 +397,27 @@ faire -import pour trouver plus
 					print(f"Informations demandées par {data.message.author.nickname}")
 				except Exception as e:
 					print(e)
+					
+			if x.lower()=="-gemir" and c==[]:
+				if subclient.get_chat_thread(data.message.chatId).title==None:
+					if x.lower() not in l:
+						sounds="gemir.mp3"
+						with open(sounds,"fr") as f:
+							try:
+								subclient.send_message(chatId=data.message.chatId,file=f,fileType="audio")
+								print(f"Informations demandées par {data.message.author.nickname}")
+							except Exception as e:
+								print(e)
+					else:
+						try:
+							subclient.send_message(chatId=data.message.chatId,message="La commande gémir est verrouillée")
+						except:
+							pass
+				else:
+					try:
+						subclient.send_message(chatId=data.message.chatId,message="La commande gémir ne fonctionne qu'en pv, tapez -pv pour que le bot rejoigne pv")
+					except:
+						pass
 					
 			if x.lower()=="-fin" and c==[]:
 				try:
