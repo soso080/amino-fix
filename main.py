@@ -313,7 +313,17 @@ faire -import pour trouver plus
 					print(f"Informations demandées par {data.message.author.nickname}")
 				except Exception as e:
 					print(e)
-
+			
+			if x.lower()=="-play1" and c==[]:
+				if subclient.get_chat_thread(data.message.chatId).title==None:
+						sounds="musique1.mp3"
+						with open(sounds,"rb") as f:
+							try:
+								subclient.send_message(chatId=data.message.chatId,file=f,fileType="audio")
+								print(f"Informations demandées par {data.message.author.nickname}")
+							except Exception as e:
+								print(e)
+					
 			if x.lower()=="-tappe" and c==[]:
 				try:
 					subclient.send_message(chatId=data.message.chatId,message="""[i]Prend mes gants de boxe et te frappe fort au visage""")
@@ -402,7 +412,7 @@ faire -import pour trouver plus
 				if subclient.get_chat_thread(data.message.chatId).title==None:
 					if x.lower() not in l:
 						sounds="gemir.mp3"
-						with open(sounds,"fr") as f:
+						with open(sounds,"rb") as f:
 							try:
 								subclient.send_message(chatId=data.message.chatId,file=f,fileType="audio")
 								print(f"Informations demandées par {data.message.author.nickname}")
