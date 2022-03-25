@@ -13,7 +13,7 @@ print(Fore.RED + Style.BRIGHT)
 print(pyfiglet.figlet_format("Transfert", font="standard"))
 
 W=aminofix.Client("42FA1B03F7C14027E49A6230CA7E7E730482CDD157BC4B4CDD430870B1982A52EE913D003F5075C394")
-emails = open("/sdcard/emails.txt", "r")
+emails = open("emails.txt", "r")
 print(Fore.YELLOW + Style.BRIGHT)
 link = W.get_from_code("http://aminoapps.com/p/5snf7h")
 blog=link.objectId
