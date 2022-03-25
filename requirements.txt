@@ -1,4 +1,5 @@
 amino.fix==2.2.7
 requests
+gtts
 pyfiglet
 colorama
