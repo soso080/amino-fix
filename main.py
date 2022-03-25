@@ -30,8 +30,8 @@ password="020862waza"
 client.login(email=email,password=password)
 
 
-cid="79964099"
-cidy=79964099
+cid="93307693"
+cidy=93307693
 
 path_utilities = "utilities"
 path_eljson1 = f"{path_utilities}/elJson.json"
@@ -108,7 +108,7 @@ def on_text_message(data):
 								
 			if x.lower()=="-help" and c==[]:
 				try:
-					subclient.send_message(chatId=data.message.chatId,message="""[c]Voici mes commandes:\n\n[c]-membres\n[c]-fin | -twerk | -cid\n[c]-discord | -omg | -gémir\n[c]-tappe | -blague | -hugme\n[c]-go | -parle | -inviteall\n[c]-grrr | -flirter | -acm\n[c]-import | -amino | -pv\n\n[c]•────────────•\n\n[c]-code (lien profil)\n[c]-join (lien chat)\n[c]-vc (texte)""")
+					subclient.send_message(chatId=data.message.chatId,message="""[c]Voici mes commandes:\n\n[c]-membres\n[c]-fin | -twerk | -cid\n[c]-discord | -omg | -gémir\n[c]-tappe | -blague | -hugme\n[c]-go | -time | -inviteall\n[c]-grrr | -flirter | -acm\n[c]-import | -amino | -pv\n[c]-lol | -play\n\n[c]•────────────•\n\n[c]-code (lien profil)\n[c]-join (lien chat)\n[c]-vc (texte)""")
 					print(f"Informations demandées par {data.message.author.nickname}")
 				except Exception as e:
 					print(e)
@@ -121,33 +121,6 @@ def on_text_message(data):
 					print(f"Informations demandées par {data.message.author.nickname}")
 				except Exception as e:
 					print(e)
-
-			if x.lower()=="-parle":
-				if x.lower() not in l:
-					if c==[]:
-						try:
-							subclient.send_message(chatId=data.message.chatId,message=f"{data.message.author.nickname}, je ne peux pas parler à moins que tu m'écrives quelque chose après avoir dit !")
-						except:
-							pass
-					else:
-						try:
-							t=''
-							lx='hi'
-							for i in c:
-								t=t+i
-							out=gTTS(text=t,lang=lx,slow=False)
-							out.save("soundfx.mp3")
-							with open("soundfx.mp3","fr") as f:
-								subclient.send_message(chatId=data.message.chatId,file=f,fileType="audio")
-							f.close()
-							print(f"Informations demandées par {data.message.author.nickname}")
-						except Exception as e:
-							print(e)
-				else:
-					try:
-						subclient.send_message(chatId=data.message.chatId,message="dire que la commande est verrouillée")
-					except:
-						pass
 
 			if x.lower()=="-join":
 				if c==[]:
@@ -210,7 +183,19 @@ def on_text_message(data):
 						subclient.send_message(chatId=data.message.chatId,message=f"La commande pv est verrouillée<${data.message.author.nickname}$> !!",mentionUserIds=[data.message.author.userId])
 					except:
 						pass
-
+			
+			if x.lower()=="-lol":
+				if subclient.get_chat_thread(data.message.chatId).title!=None:
+					hx=random.choice(os.listdir("memes"))
+					if x.lower() not in l:
+						sounds=f"memes/{hx}"
+						with open(sounds,"rb") as f:
+							try:
+								subclient.send_message(chatId=data.message.chatId,file=f,fileType="image")
+								print(f"Informations demandées par {data.message.author.nickname}")
+							except Exception as e:
+								print(e)
+								
 			if x.lower()=="-go" and c==[]:
 				if x.lower() not in l:
 					try:
@@ -335,6 +320,28 @@ faire -import pour trouver plus
 					print(f"Informations demandées par {data.message.author.nickname}")
 				except Exception as e:
 					print(e)
+					
+			if x.lower()=="-time" and c==[]:
+				if subclient.get_chat_thread(data.message.chatId).title==None:
+					if x.lower() not in l:
+						sounds="time.mp3"
+						with open(sounds,"fr") as f:
+							try:
+								subclient.send_message(chatId=data.message.chatId,file=f,fileType="audio")
+								print(f"Informations demandées par {data.message.author.nickname}")
+							except Exception as e:
+								print(e)
+			
+			if x.lower()=="-play" and c==[]:
+				if subclient.get_chat_thread(data.message.chatId).title==None:
+					if x.lower() not in l:
+						sounds="musique.mp3"
+						with open(sounds,"fr") as f:
+							try:
+								subclient.send_message(chatId=data.message.chatId,file=f,fileType="audio")
+								print(f"Informations demandées par {data.message.author.nickname}")
+							except Exception as e:
+								print(e)
 
 			if x.lower()=="-gémir" and c==[]:
 				if subclient.get_chat_thread(data.message.chatId).title==None:
@@ -508,7 +515,7 @@ for x in client.chat_methods:
 subs = client.sub_clients(0, 100)
 for x, i in enumerate(subs.name, 1):
     print(f"{x}. {i}")
-comId = "79964099"
+comId = "93307693"
 sub_client = aminofix.SubClient(comId=comId, profile=client.profile) # 144781697
 print("Surveillance des chats...")
 
