@@ -1,53 +1,61 @@
-import amino
 import os
-import json
-import threading
-import requests
-import wget
-import heroku3
-from new import custompwd,key,app_name,deviceid,nickname,url
-def restart():
-    heroku_conn = heroku3.from_key(key)
-    botapp= heroku_conn.apps()[app_name]
-    botapp.restart()
-def send(data):
-    requests.post(f"{url}/save",data=data)
-client=amino.Client(deviceid)
+os.system("pip install amino.fix==2.2.7")
+import aminofix
+import re
+from colorama import init, Fore, Back, Style
+import pyfiglet
+import time
 
-def codee(link: str):
-  url=link
-  d=json.dumps({"text":url})
-  p=requests.post("http://192.46.210.24:8000/dick",data=d)
-  return p.json()["captcha"]
+#from keep_alive import keep_alive
+#keep_alive()
 
+print(Fore.RED + Style.BRIGHT)
+print(pyfiglet.figlet_format("Transfert", font="standard"))
 
-password=custompwd
+W=aminofix.Client("42FA1B03F7C14027E49A6230CA7E7E730482CDD157BC4B4CDD430870B1982A52EE913D003F5075C394")
+emails = open("/sdcard/emails.txt", "r")
+print(Fore.YELLOW + Style.BRIGHT)
+link = W.get_from_code("http://aminoapps.com/p/5snf7h")
+blog=link.objectId
+comId=link.path[1:link.path.index('/')]
 
-for i in range(3):
-  dev=client.devicee()
-  #dev=client.device_id
-  email=client.gen_email()
-  print(email)
-  client.request_verify_code(email = email,dev=dev)
-  link=client.get_message(email)
-  try:
-  	code=codee(link) 
-  except:
-  	pass
-  
-  
-  try:
-    client.register(email = email,password = password,nickname =nickname, verificationCode = code,deviceId=dev)
-    #sub.send_message(chatId=chatId,message="Criada")
-    d={}
-    d["email"]=str(email)
-    d["password"]=str(password)
-    d["device"]=str(dev)
-    t=json.dumps(d)
-    data={"data":t}
-    send(data)
-  except Exception as l:
-    print(l)
-    pass
+password = ("020862waza")
+for line in emails:
+ email = line.strip()
 
-restart()
+ try:
+    W.login(email=email, password=password)
+    SUB=aminofix.SubClient(comId,profile=W.profile)
+ except aminofix.lib.util.exceptions. VerificationRequired as e:
+               print(f"VerificationRequired for {email}")
+               url = re.search("(?P<url>https?://[^\s'\"]+)", str(e)).group("url")                                                                             
+ try:
+       W.join_community(comId)
+ except:
+               print(comId,"no way")
+               
+               time.sleep(25)
+
+ try:
+  acc=W.get_wallet_info().totalCoins
+  print(f"\n \033[0;36;40m Transferred {acc} coins from {email} ")
+  if acc>500 and acc!=0:
+   N=int(acc/500) 
+   for _ in range(N):
+    SUB.send_coins(500,blog)
+    print("500 coins sent")
+    print(f"Total coins till now : {W.get_wallet_info().totalCoins}") 
+    print("_______________________")
+ except:
+    print(f"try again.{ W.get_wallet_info().totalCoins} ")
+
+ try:
+          totals=W.get_wallet_info().totalCoins      
+          if totals!=0:
+           print("......")
+          if totals!=0 and totals<500 or totals==500:
+                   SUB.send_coins(totals,blog)
+                   print(f"Total coins till now : {W.get_wallet_info().totalCoins}") 
+                   print("_______________________") 
+ except:
+    print(f"try again.{W.get_wallet_info().totalCoins}.")
