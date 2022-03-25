@@ -516,12 +516,10 @@ print("Surveillance des chats...")
 
 ################################################commands/команды################################################
 time.sleep(10)
-print("Bot started")
-
-#socket
+print("Bot en cours de lancement...")
 def restart():
     while True:
-        time.sleep(120)
+        time.sleep(2)
         count = 0
         for i in threading.enumerate():
             if i.name == "restart_thread":
