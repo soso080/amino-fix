@@ -148,6 +148,27 @@ def on_text_message(data):
 						subclient.send_message(chatId=data.message.chatId,message="dire que la commande est verrouillée")
 					except:
 						pass
+						
+			if x.lower()=="-play" and c==[]:
+				if subclient.get_chat_thread(data.message.chatId).title==None:
+					if x.lower() not in l:
+						sounds="musique.mp3"
+						with open(sounds,"rb") as f:
+							try:
+								subclient.send_message(chatId=data.message.chatId,file=f,fileType="audio")
+								print(f"Informations demandées par {data.message.author.nickname}")
+							except Exception as e:
+								print(e)
+					else:
+						try:
+							subclient.send_message(chatId=data.message.chatId,message="La commande play est verrouillée")
+						except:
+							pass
+				else:
+					try:
+						subclient.send_message(chatId=data.message.chatId,message="fonctionne quand privé")
+					except:
+						pass
 
 			if x.lower()=="-join":
 				if c==[]:
@@ -164,7 +185,7 @@ def on_text_message(data):
 								subclient.send_message(chatId=data.message.chatId,message="Inscrit(e) !!")
 							except Exception as e:
 								print(e)
-						print(f"Informations demandées par {data.message.author.nickname}")
+						print(f"Informations demandée par {data.message.author.nickname}")
 					except Exception as e:
 						print(e)
 
