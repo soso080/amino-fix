@@ -316,6 +316,7 @@ faire -import pour trouver plus
 			
 			if x.lower()=="-play1" and c==[]:
 				if subclient.get_chat_thread(data.message.chatId).title==None:
+					if x.lower() not in l:
 						sounds="musique1.mp3"
 						with open(sounds,"rb") as f:
 							try:
@@ -323,7 +324,17 @@ faire -import pour trouver plus
 								print(f"Informations demandées par {data.message.author.nickname}")
 							except Exception as e:
 								print(e)
-					
+					else:
+						try:
+							subclient.send_message(chatId=data.message.chatId,message="Commande verrouillée")
+						except:
+							pass
+				else:
+					try:
+						subclient.send_message(chatId=data.message.chatId,message="La commande fonctionne qu'en pv, tapez -pv pour que le bot rejoigne pv")
+					except:
+						pass
+		
 			if x.lower()=="-tappe" and c==[]:
 				try:
 					subclient.send_message(chatId=data.message.chatId,message="""[i]Prend mes gants de boxe et te frappe fort au visage""")
