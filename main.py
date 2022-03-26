@@ -108,7 +108,7 @@ def on_text_message(data):
 								
 			if x.lower()=="-help" and c==[]:
 				try:
-					subclient.send_message(chatId=data.message.chatId,message="""[c]Voici mes commandes:\n\n[c]-membres\n[c]-fin | -twerk | -cid\n[c]-discord | -omg | -gemir\n[c]-tappe | -blague | -hugme\n[c]-go | -time | -inviteall\n[c]-grrr | -flirter | -acm\n[c]-import | -amino | -pv\n[c]-lol | -play\n\n[c]•────────────•\n\n[c]-code (lien profil)\n[c]-join (lien chat)\n[c]-vc (texte)""")
+					subclient.send_message(chatId=data.message.chatId,message="""[c]Voici mes commandes:\n\n[c]-membres\n[c]-fin | -twerk | -cid\n[c]-discord | -omg | -gemir\n[c]-tappe | -blague | -hugme\n[c]-go | -time | -inviteall\n[c]-grrr | -flirter | -acm\n[c]-import | -amino | -pv\n[c]-playy | -play\n\n[c]•────────────•\n\n[c]-code (lien profil)\n[c]-join (lien chat)\n[c]-vc (texte)""")
 					print(f"Informations demandées par {data.message.author.nickname}")
 				except Exception as e:
 					print(e)
@@ -314,10 +314,10 @@ faire -import pour trouver plus
 				except Exception as e:
 					print(e)
 			
-			if x.lower()=="-play1" and c==[]:
+			if x.lower()=="-playy" and c==[]:
 				if subclient.get_chat_thread(data.message.chatId).title==None:
 					if x.lower() not in l:
-						sounds="musique1.mp3"
+						sounds="musiquee.mp3"
 						with open(sounds,"rb") as f:
 							try:
 								subclient.send_message(chatId=data.message.chatId,file=f,fileType="audio")
