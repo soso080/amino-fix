@@ -24,8 +24,8 @@ listname=[]
 print("\t\033[1;32m pino 𓂅  \033[1;36m Connection du bot\n\n")
 
 client=aminofix.Client()
-email="banesifu@gmail.com"
-password="020862waza"
+email="email"
+password="mdp"
 
 client.login(email=email,password=password)
 
